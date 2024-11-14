@@ -1,0 +1,13 @@
+.block_enter {
+    position: relative;
+}
+
+.back_enter {
+    width: 1912px;
+    height: 956px;
+    
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}

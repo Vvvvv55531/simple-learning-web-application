@@ -1,0 +1,31 @@
+.block-ctlg {
+    position: relative;
+}
+
+.back-ctlg {
+    width: 1912px;
+    height: 956px;
+    
+    position: absolute;
+}
+
+
+.text-ctlg {
+    position: absolute;
+    z-index: 1;
+    top: 150px;
+    left: 490px;
+
+    font-size: 40px;
+    color:rgb(0, 0, 0);
+}
+
+
+.sample {
+    width: 1250px;
+    height: 955px;
+
+    position: absolute;
+    left: 350px;
+    background-color: rgb(203, 207, 184);
+}

@@ -1,0 +1,18 @@
+.nav {
+  background-color: #8A0006;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.text {
+  margin-left: 525px;
+  padding: 5px;
+  
+  color:aliceblue;
+}
