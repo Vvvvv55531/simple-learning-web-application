@@ -1,10 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
-import { Container, Tab, Nav, Row, Col, Button } from 'react-bootstrap'
+import { Container, Tab, Nav, Row, Col, Button, Form} from 'react-bootstrap'
 import './About.css'
 
 import delivery from './img/delivery.png'
 import back_abt from './img/background_2.png'
+import info from './img/info.png'
+import back_inf from './img/info-back.png'
 
 
 export default class About extends Component {
@@ -30,7 +32,7 @@ export default class About extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="first">
                                             <span className="link-abt">
-                                            Delivery
+                                            Доставка
                                             </span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -38,7 +40,7 @@ export default class About extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">
                                             <span className="link-abt">
-                                            Contacts
+                                            Контакты
                                             </span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -46,7 +48,7 @@ export default class About extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="third">
                                             <span className="link-abt">
-                                            Support
+                                            Поддержка
                                             </span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -57,17 +59,51 @@ export default class About extends Component {
                                 <Tab.Content>
                                     <Tab.Pane eventKey="first">
                                         <img 
-                                        className='dev-info'
+                                        className="dev-info"
                                         src={delivery}/>
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="second">
-                                        <div 
+                                        {/* <div 
                                         className="back-abt">
-                                        </div>
+                                        </div> */}
+                                        <img 
+                                        className="info-abt"
+                                        src={info}/>
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="third">
+                                        <img 
+                                        className="info-abt"
+                                        src={back_inf}/>
+
+                                        <Container 
+                                        className="info-abt">
+                                            <h2 className="m-5">
+                                            Связь с нами</h2>
+
+                                            <Form>
+                                                <Form.Group className="m-5"
+                                                controlId="formBasicEmail">
+                                                <Form.Label>Email</Form.Label>
+                                                    <Form.Control type="email"
+                                                    placeholder="Введите адрес почты">
+                                                    </Form.Control>
+                                                </Form.Group>
+
+                                                <Form.Group className="m-5"
+                                                controlId="formBasicPassword">
+                                                <Form.Label>Комментарий</Form.Label>
+                                                    <Form.Control as="textarea" rows="3"
+                                                    placeholder="Введите текст">
+                                                    </Form.Control>
+                                                </Form.Group>
+
+                                                <Button variant="primary" type="submit"
+                                                className="f-abt">
+                                                Отправить</Button>
+                                            </Form>
+                                        </Container>
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Col>

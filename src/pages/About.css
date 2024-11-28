@@ -33,10 +33,23 @@
     z-index: -1;
 }
 
-.back-abt {
+/* .back-abt {
     width: 990px;
     height: 956px;
     background-color: rgb(252, 252, 252);
+} */
+
+.info-abt {
+    width: 1000px;
+    height: 870px;
+    margin-top: 85px;
+
+    position: absolute;
+    z-index: -1;
+}
+
+.f-abt {
+    margin-left: 50px;
 }
 
 .nav-about {

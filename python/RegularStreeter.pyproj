@@ -35,6 +35,9 @@
     <Compile Include="accounts\admin.py" />
     <Compile Include="accounts\apps.py" />
     <Compile Include="accounts\forms.py" />
+    <Compile Include="accounts\management\commands\fill_products_with_ai.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="accounts\migrations\__init__.py" />
     <Compile Include="accounts\models.py" />
     <Compile Include="accounts\urls1.py">
@@ -45,6 +48,9 @@
     <Compile Include="accounts\__init__.py" />
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
+    <Compile Include="app\neural_network.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\tests.py" />
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
@@ -57,12 +63,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="accounts\" />
+    <Folder Include="accounts\management\commands\" />
     <Folder Include="accounts\migrations\" />
+    <Folder Include="accounts\management\" />
     <Folder Include="accounts\templates\" />
     <Folder Include="accounts\templates\accounts\" />
     <Folder Include="accounts\__pycache__\" />
     <Folder Include="app\" />
     <Folder Include="app\migrations\" />
+    <Folder Include="app\media\" />
+    <Folder Include="app\images\" />
     <Folder Include="app\static\" />
     <Folder Include="app\static\app\" />
     <Folder Include="app\static\app\content\" />
