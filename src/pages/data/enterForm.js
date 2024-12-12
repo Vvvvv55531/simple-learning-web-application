@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './enterForm.css';
 
 function AuthPage() {
@@ -30,7 +30,7 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:3000/save", {
+      await fetch("http://localhost:8000/api/enter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,15 +70,15 @@ function RegisterForm() {
     e.preventDefault();
     
     try {
-      await fetch("http://localhost:3000/save", {
+      await fetch("http://localhost:8000/api/enter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ formType: "register", ...formData }),
       });
-
           alert("Регистрация выполнена и сохранена!");
+          console.log(JSON.stringify({ formType: "register", ...formData }));
     } 
       
     catch (error) {

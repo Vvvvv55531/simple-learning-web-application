@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import AuthPage from './data/enterForm.js';
 import './Enter.css'
+import { Footer } from '../components/Footer'
 
 import back_ent from './img/background_1.png'
 
@@ -15,6 +16,8 @@ export default class Enter extends Component {
 
                     <AuthPage />
                 </Container>
+
+                <Footer/>
             </main>
         )
     }

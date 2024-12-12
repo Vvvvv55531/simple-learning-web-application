@@ -1,0 +1,30 @@
+.footer-main {
+  display: flex;
+  width: auto;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-link {
+  color:aliceblue;
+  font-family: Georgia;
+  white-space: nowrap;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.footer-text {
+  color: rgb(66, 63, 63);
+  line-height: 40px;
+  text-align: center;
+}
+
+.footer-link:hover {
+  color: rgb(145, 145, 145);
+}
+
+@media (max-width: 1500px) {
+  .footer-link {
+    font-size: 25px;
+  }
+}

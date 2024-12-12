@@ -1,5 +1,22 @@
 .block-about {
     position: relative;
+    margin-bottom: 500px;
+}
+
+.back-left {
+    background-color: black;
+    position: fixed;
+    z-index: -1;
+    width: 500px;
+    height: 100vh;
+}
+
+.back-right {
+    background-color: rgb(228, 228, 228);
+    position: fixed;
+    z-index: -1;
+    width: 1000px;
+    height: 100vh;
 }
 
 .back-about {
@@ -12,40 +29,44 @@
     left: 0;
 }
 
-.button-abt {
-    width: 220px;
-    height: 50px;
-
-    position: absolute;
-    margin-top: 260px;
-}
-
-.text-button {
-    font-size: 21px;
-}
-
 .dev-info {
     width: 990px;
     height: 600px;
-    margin-top: 95px;
+    margin-top: 190px;
 
     position: absolute;
     z-index: -1;
 }
 
-/* .back-abt {
+.about-form {
     width: 990px;
-    height: 956px;
-    background-color: rgb(252, 252, 252);
-} */
+    height: 600px;
+    margin-top: 160px;
+    padding: 0 50px;
 
-.info-abt {
+    position: absolute;
+}
+
+.info-abt-img {
     width: 1000px;
-    height: 870px;
-    margin-top: 85px;
+    height: 850px;
+    margin-top: 105px;
 
     position: absolute;
     z-index: -1;
+}
+
+.info-abt {
+    width: 1000px;
+    height: 840px;
+    margin-top: 150px;
+
+    position: absolute;
+    z-index: -1;
+}
+
+.b {
+    background-color: rgb(255, 255, 255);
 }
 
 .f-abt {
@@ -55,10 +76,11 @@
 .nav-about {
     width: 300px;
     height: 150px;
-    background-color: rgb(17, 1, 1);
+    background-color: rgb(0, 0, 0);
 
     border-radius: 15px;
-    margin-top: 90px;
+    margin-top: 300px;
+    margin-left: 20px;
 }
 
 .link-abt {
