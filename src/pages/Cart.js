@@ -1,61 +1,136 @@
-import './Cart.css'
+import './Catalog'
 import { Footer } from '../components/Footer'
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap';
 
-
-const products = [
-    { id: 1, name: 'Кеды Converse', price: 7999, image: 'converse.jpg' },
-    { id: 2, name: 'Кроссовки Nike', price: 8999, image: 'nike.jpg' },
-    { id: 3, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 4, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 5, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 6, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 7, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 8, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 9, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 10, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 11, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    { id: 12, name: 'Ботинки Timberland', price: 12999, image: 'timberland.jpg' },
-    ];
-
-const ProductCard = ({ product }) => {
-    return (
-        <div className="cart-product-card">
-        <img src={product.image} alt={product.name} className="product-image" />
-        <h3 className="cart-product-name">{product.name}</h3>
-        <p className="cart-product-price">{product.price} ₽</p>
-        </div>
-    );
+export default class Cart extends Component {
+    state = {
+        products: [], // Инициализируем состояние с пустым массивом продуктов
     };
+
+    // Загрузка продуктов после монтирования компонента
+    async componentDidMount() {
+        try {
+            const response = await fetch("http://localhost:8000/api/cart");
+            const data = await response.json();
+            this.setState({ products: data.products }); // Сохраняем продукты в состоянии
+        } catch (error) {
+            console.error("Ошибка при получении данных:", error);
+        }
+    }
+
+    // Обработчик кнопки "Оформить"
+    handleCheckout = async () => {
+        const token = localStorage.getItem("token"); // Проверяем наличие токена
+
+        if (!token) {
+            alert("Вы не авторизованы! Пожалуйста, выполните вход, чтобы оформить заказ.");
+            return;
+        }
+
+        try {
+            // Проверка токена на сервере
+            const userResponse = await fetch("http://localhost:8000/api/check", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!userResponse.ok) {
+                alert("Ваш заказ успешно оформлен!");
+                return;
+            }
+
+            const userData = await userResponse.json();
+            const userEmail = userData.email;
+
+            // Отправляем заказ
+            const orderResponse = await fetch("http://localhost:8000/api/enter", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, // Передаем токен для безопасности
+                },
+                body: JSON.stringify({
+                    email: userEmail,
+                    products: this.state.products.map(({ id, name, price }) => ({ id, name, price })),
+                }),
+            });
+
+            if (orderResponse.ok) {
+                alert("Ваш заказ успешно оформлен!");
+                console.log("Заказ отправлен:", this.state.products);
+            } else {
+                alert("Ошибка при оформлении заказа.");
+            }
+        } catch (error) {
+            console.error("Ошибка при оформлении заказа:", error);
+        }
+    };
+
+    // Обработчик кнопки "Удалить"
+    handleDelCart = (product) => {
+        alert(`Продукт удален из корзины: ${product.name}`);
+        this.deleteProduct(product.id);
+    };
+
+    deleteProduct = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/cart/${id}`, {
+                method: "DELETE",
+            });
     
-    const ProductCatalog = ({ products }) => {
-    return (
-        <div className="cart-product-catalog">
-        {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-        ))}
-        </div>
-    );
+            if (response.ok) {
+                console.log(`Товар с ID ${id} успешно удалён`);
+                this.setState((prevState) => ({
+                    products: prevState.products.filter((product) => product.id !== id),
+                }));
+            } else {
+                console.error("Ошибка при удалении товара");
+            }
+        } catch (error) {
+            console.error("Ошибка:", error);
+        }
     };
 
-export default class Catalog extends Component {
     render() {
+        const { products } = this.state;
+
         return (
-            <><main className="cart-block-ctlg">
-                <h3 className="cart-text-ctlg">Корзина</h3>
-                <div className="cart-sample"></div>
-
-                
-            </main>
-
-            <Container>
-                <ProductCatalog products={products} />
-            </Container>
-            <Footer /></>
-        )
+            <>
+                <main className="block-ctlg">
+                    <h3 className="c-text-ctlg">Корзина</h3>
+                    <div className="c-sample"></div>
+                    <button className="b" onClick={this.handleCheckout}>Оформить</button>
+                </main>
+                <Container className="product-catalog c-cart">
+                    {products.map((product) => (
+                        <div key={product.id} className="product-card">
+                            <img
+                                src={`http://localhost:8000${product.image_url}`}
+                                alt={product.name}
+                                className="product-image"
+                            />
+                            <h3 className="product-name">{product.name}</h3>
+                            <p className="product-price">{product.price} $</p>
+                            <button
+                                className="del-cart"
+                                onClick={() => this.handleDelCart(product)}
+                            >
+                                Удалить
+                            </button>
+                        </div>
+                    ))}
+                </Container>
+                <div className="m-c"></div>
+                <Footer />
+                <div className="f-c"></div>
+            </>
+        );
     }
 }
+
         
 //         try {
 //             const response = await fetch("http://localhost:8000/api/get_value");

@@ -14,10 +14,16 @@ from .functions import set_value
 from .f1 import get_value
 from accounts.f_enter import enter
 from accounts.f_catalog import products
+from accounts.f_cart import cart
+from accounts.f_check import check
+
 
 urlpatterns = [
     path('api/product', products, name='product'),
     path('api/enter', enter, name='enter'),
+    path('api/cart', cart, name='cart'),
+    path('api/cart/<int:product_id>', cart, name='delete_product'),
+    path('api/check', check, name='check'),
 
     path('api/get_value', set_value, name='get_value'),
     path('api/get_value_2', get_value, name='get_value_2'),

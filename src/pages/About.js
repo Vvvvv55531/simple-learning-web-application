@@ -11,7 +11,30 @@ import back_inf from './img/info-back.png'
 
 
 const FormAbout = () => {
-    return <Form>
+
+    const handleSubmit = async () => {
+        try {
+        const value = "query"; // Локальная переменная JS
+    
+        // Отправка значения на сервер Django через POST-запрос
+        const response = await fetch("http://localhost:8000/api/get_value_2", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ value }),
+        });
+
+        if (response.ok) {
+            console.log("Значение успешно отправлено на Django");
+        } else {
+            console.error("Ошибка при отправке значения на Django");
+        }
+        } catch (error) {
+            console.error("Ошибка:", error);
+    }}
+
+    return <Form className="fff">
         <Form.Group 
         className="m-5"
         controlId="formBasicEmail">
@@ -42,7 +65,8 @@ const FormAbout = () => {
         <Button 
         variant="primary" 
         type="submit"
-        className="f-abt">
+        className="f-abt"
+        onClick={handleSubmit}>
         Отправить</Button>
     </Form>
 }
@@ -74,7 +98,7 @@ export default class About extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">
                                             <span className="link-abt">
-                                            Поддержка
+                                            Контакты
                                             </span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -82,7 +106,7 @@ export default class About extends Component {
                                     <Nav.Item>
                                         <Nav.Link eventKey="third">
                                             <span className="link-abt">
-                                            Контакты
+                                            Поддержка
                                             </span>
                                         </Nav.Link>
                                     </Nav.Item>
@@ -103,7 +127,7 @@ export default class About extends Component {
 
                                     <Tab.Pane eventKey="second">
                                         <div 
-                                        className='back-right b'>
+                                        className='back-right b-a'>
                                         </div>
 
                                         <img 
@@ -126,10 +150,10 @@ export default class About extends Component {
                                 </Tab.Content>
                             </Col>
                         </Row>
-                    </Tab.Container>    
+                    </Tab.Container>   
                 </Container>
+                <div className="footer-abt"></div>
             </main>
-
             <Footer /></>
         )
     }

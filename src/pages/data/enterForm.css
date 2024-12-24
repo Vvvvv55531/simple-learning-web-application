@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 956px;
-    background-color: #1f0000;
+    padding-top: 70px;
+    height: 920px;
+    background-color: #f7f7f7;
   }
   
 .form-wrapper {
