@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./enterForm.css";
 import "./page.css"
 import icon from "./icon.png"
+import PropTypes from 'prop-types';
 
 function AuthPage() {
 
@@ -111,6 +112,10 @@ function LoginForm({ onAuthSuccess }) {
   );
 }
 
+LoginForm.propTypes = {
+  onAuthSuccess: PropTypes.func.isRequired,
+};
+
 function RegisterForm() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
 
@@ -184,7 +189,7 @@ function RegisterForm() {
   );
 }
 
-function Page(a) {
+function Page() {
   return (
     <div className="page-back">
       <img
