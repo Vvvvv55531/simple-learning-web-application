@@ -1,2 +1,2 @@
-# Web-application-for-Regular-streeter
-Учебный проект - веб-приложение для торговой сети "Regular streeter"
+# Web application for Regular streeter
+Learning project - web application for the Regular Streeter retail chain
