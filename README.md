@@ -1,2 +1,2 @@
-# Web application for Regular streeter
-Learning project - web application for the Regular Streeter retail chain
+# Web application for a chain of stores
+Learning project - Web application for the Regular Streeter chain of athletic shoe stores
